@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <hr>
+    <br>
+    <div class="row pt-3">
+        <h1 class="text-dark text-center fst-italic">Formulaire d'inscription</h1>
+    </div>
+    {{form(form, {'attr':{'class': 'p4'}})}}
+    
+{% endblock %}
