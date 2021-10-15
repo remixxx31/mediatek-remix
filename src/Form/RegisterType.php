@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -21,6 +22,7 @@ class RegisterType extends AbstractType
             ->add('firstName',TextType::class ,
             [
                 'label' => 'Prénom',
+                // 'constraints'=>new Length('min' = 2, 'max'= 30),
                 'attr' => [
                     'class' => 'form-control mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre prénom'
@@ -29,6 +31,8 @@ class RegisterType extends AbstractType
             ])
             ->add('lastName',TextType::class, [
                 'label' => 'Nom',
+                // 'constraints'=>new Length('min' = 2, 'max'= 30),
+
                 'attr' => [
                     'class' => 'form-control mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre nom'
@@ -37,6 +41,7 @@ class RegisterType extends AbstractType
             ->add('adress',TextType::class,
             [
                 'label' => 'Adresse postale',
+                // 'constraints'=>new Length('min' = 2, 'max'= 30),
                 'attr' => [
                     'class' => 'form-control mx-auto my-3 ',
                     'placeholder' => ' au format n°: / nom de rue / CP / ville '
@@ -54,6 +59,7 @@ class RegisterType extends AbstractType
             ->add('email',EmailType::class,
             [
                 'label' => 'adresse email',
+                // 'constraints'=>new Length('min' = 2, 'max'= 30),
                 'attr' => [
                     'class' => 'form-control mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre email',
@@ -63,9 +69,16 @@ class RegisterType extends AbstractType
                 'type' =>PasswordType::class,
                 'invalid_message'=>'Le mot de passe et la confirmation doivent être identique.',
                 'label' => 'Votre mot de passe',
+                // 'constraints'=>new Length('min' = 2, 'max'= 30),
                 'required' => true,
-                'first_options'=>['label'=>'Mot de passe'],
-                'second_options'=>['label'=>'Confirmez Votre mot de passe']
+                'first_options'=>[
+                    'label'=>'Mot de passe',
+                    'placeholder' => 'Merci de saisir votre mot de passe'
+                ],
+                'second_options'=>[
+                    'label'=>'Confirmez Votre mot de passe',
+                    'placeholder' => 'Merci de confirmez votre mot de passe'
+                ]
             ])
            
          
