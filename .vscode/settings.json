@@ -13,5 +13,6 @@
       "username": "root",
       "password": ""
     }
-  ]
+  ],
+  "editor.fontFamily": "Consolas, 'FiraCode', monospace"
 }

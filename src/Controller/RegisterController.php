@@ -38,9 +38,9 @@ class RegisterController extends AbstractController
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
-            dd($user);
+            // dd($user);
             
-            // return new RedirectResponse($urlgenerator->generate('app_login'));
+            return new RedirectResponse($urlgenerator->generate('app_login'));
         }
 
 
