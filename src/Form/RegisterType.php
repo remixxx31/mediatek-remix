@@ -22,6 +22,7 @@ class RegisterType extends AbstractType
             [
                 'label' => 'Prénom',
                 'attr' => [
+                    'class' => 'form-control mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre prénom'
                     
                     ]
@@ -29,6 +30,7 @@ class RegisterType extends AbstractType
             ->add('lastName',TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
+                    'class' => 'form-control mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre nom'
                 ]
                 ])
@@ -36,6 +38,7 @@ class RegisterType extends AbstractType
             [
                 'label' => 'Adresse postale',
                 'attr' => [
+                    'class' => 'form-control mx-auto my-3 ',
                     'placeholder' => ' au format n°: / nom de rue / CP / ville '
                 ]
             ]
@@ -44,6 +47,7 @@ class RegisterType extends AbstractType
             [
                 'label' => 'Date de naissance',
                 'attr' => [
+                    'class' => 'form-row form-control-sm mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre date de naissance'
                 ]
             ])
@@ -51,25 +55,23 @@ class RegisterType extends AbstractType
             [
                 'label' => 'adresse email',
                 'attr' => [
+                    'class' => 'form-control mx-auto my-3',
                     'placeholder' => 'Merci de saisir votre email',
                 ]
             ])
-     
-            ->add('password_confirm',RepeatedType::class,
-            [
-                'type' => PasswordType::class,
-                'invalid_message'=> 'Le mot de passe et la confirmation doivent être identique.',
+            ->add('password', RepeatedType::class,[
+                'type' =>PasswordType::class,
+                'invalid_message'=>'Le mot de passe et la confirmation doivent être identique.',
+                'label' => 'Votre mot de passe',
                 'required' => true,
-                'first_options' => [ 'label'=> 'Mot de passe'],
-                'second_options' => [ 'label'=> 'Confirmez votre mot de passe'],
-                'attr' => [
-                    'placeholder' => 'Merci de saisir votre mot de passe',
-                ]
+                'first_options'=>['label'=>'Mot de passe'],
+                'second_options'=>['label'=>'Confirmez Votre mot de passe']
             ])
+           
+         
             ->add('submit', SubmitType::class,
             [
                 'label' => "S'inscrire"
-                
             ])
         ;
     }
