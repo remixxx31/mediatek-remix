@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+	Mon compte
+{% endblock %}
+
+
+{% block body %}
+	<hr>
+	<hr>
+    <div class="pt-5 pt-md-3">
+	<h1 class="text-center h1 py-3 fst-italic">Mon compte</h1>
+    </div>
+	<div class="mx-auto col-10 col-md-6 text-center">
+		Bienvenue
+		<span class="fw-bold">{{app.user.firstname}}</span>
+		dans votre compte. C'est dans cet espace que vous allez pouvoir gérer toutes vos vos informations personnelles.
+		<hr>
+		<a href="{{path('account_password')}}">-Modifier son mot de passe</a>
+	</div>
+
+	{# {{dump(app.user.firstname.)}} #}
+	<hr>
+	<div class="bg-dark text-white text-center">
+		(-Rajouter un lien de déconnexion)<br>
+		(-Rediriger la page ensuite sur la page de login si deconnexion)<br>
+		(-Accès à une page de recherche sur le catalogue de la médiathèque)<br>
+		(-Accès à une page récapitulatif des emprunts)<br>
+	</div>
+{% endblock %}
