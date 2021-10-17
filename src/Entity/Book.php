@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use App\Entity\Kind;
+use App\Entity\Author;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BookRepository;
@@ -30,20 +32,17 @@ class Book
 
     /**
      * @ORM\Column(type="string", length=4)
-     * @Assert\Date
-     * @var string A "YYYY" formated-value
      */
-    private $release_year;
+    protected $release_year;
 
     /**
-     * @ORM\Column(type="string", length=4, nullable=true)
-     * @Assert\Date
-     * @var string A "YYYY" formated-value
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
+     * @ORM\JoinColumn(nullable=true)
      */
-    // protected $release_year;
+    private $author;
 
 
-   
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,17 +72,29 @@ class Book
         return $this;
     }
 
-    public function getReleaseYear(): ?string
+    public function getReleaseYear(): string
     {
         return $this->release_year;
     }
 
     public function setReleaseYear(string $release_year): self
     {
+        
         $this->release_year = $release_year;
 
         return $this;
     }
 
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
 
 }
