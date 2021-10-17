@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\AuthorRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AuthorRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=AuthorRepository::class)
@@ -36,6 +38,7 @@ class Author
      * @ORM\Column(type="text", nullable=true)
      */
     private $abstract;
+
 
     public function getId(): ?int
     {
@@ -89,4 +92,6 @@ class Author
 
         return $this;
     }
+
+
 }

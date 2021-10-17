@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Entity;
-
-use App\Repository\BookRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BookRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -23,25 +24,26 @@ class Book
     private $title;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $release_date;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4)
+     * @Assert\Date
+     * @var string A "YYYY" formated-value
      */
-    private $author;
+    private $release_year;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4, nullable=true)
+     * @Assert\Date
+     * @var string A "YYYY" formated-value
      */
-    private $kind;
+    // protected $release_year;
 
+
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -59,18 +61,6 @@ class Book
         return $this;
     }
 
-    public function getReleaseDate(): ?\DateTimeInterface
-    {
-        return $this->release_date;
-    }
-
-    public function setReleaseDate(?\DateTimeInterface $release_date): self
-    {
-        $this->release_date = $release_date;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -83,27 +73,17 @@ class Book
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getReleaseYear(): ?string
     {
-        return $this->author;
+        return $this->release_year;
     }
 
-    public function setAuthor(string $author): self
+    public function setReleaseYear(string $release_year): self
     {
-        $this->author = $author;
+        $this->release_year = $release_year;
 
         return $this;
     }
 
-    public function getKind(): ?string
-    {
-        return $this->kind;
-    }
 
-    public function setKind(string $kind): self
-    {
-        $this->kind = $kind;
-
-        return $this;
-    }
 }
