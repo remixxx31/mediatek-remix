@@ -44,6 +44,11 @@ class Book
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cover;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class Book
     public function setCategory(?Kind $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
 
         return $this;
     }

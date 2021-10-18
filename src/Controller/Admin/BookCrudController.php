@@ -4,10 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\Book;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 
 class BookCrudController extends AbstractCrudController
 {
@@ -24,7 +26,9 @@ class BookCrudController extends AbstractCrudController
             IntegerField::new('year'),
             TextareaField::new('description'),
             AssociationField::new('authorbook'),
-            AssociationField::new('category')
+            AssociationField::new('category'),
+            ImageField::new('cover')->setUploadDir("public/assets/images/cover_img")
+            ->setBasePath("/assets/images/cover_img"),
         ];
     }
     
