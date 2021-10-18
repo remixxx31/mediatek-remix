@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\Kind;
-use App\Entity\Author;
-use DateTimeInterface;
-use Doctrine\ORM\Mapping as ORM;
+
 use App\Repository\BookRepository;
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -26,22 +23,19 @@ class Book
     private $title;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Author::class)
+     */
+    private $authorBook;
+
+    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=4)
+     * @ORM\Column(type="string", length=4, nullable=true)
      */
-    protected $release_year;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $author;
-
-
+    private $year;
 
     public function getId(): ?int
     {
@@ -60,6 +54,18 @@ class Book
         return $this;
     }
 
+    public function getAuthorBook(): ?Author
+    {
+        return $this->authorBook;
+    }
+
+    public function setAuthorBook(?Author $authorBook): self
+    {
+        $this->authorBook = $authorBook;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -72,29 +78,15 @@ class Book
         return $this;
     }
 
-    public function getReleaseYear(): string
+    public function getYear(): ?string
     {
-        return $this->release_year;
+        return $this->year;
     }
 
-    public function setReleaseYear(string $release_year): self
+    public function setYear(?string $year): self
     {
-        
-        $this->release_year = $release_year;
+        $this->year = $year;
 
         return $this;
     }
-
-    public function getAuthor(): ?Author
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?Author $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
 }

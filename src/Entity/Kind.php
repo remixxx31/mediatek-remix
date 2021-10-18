@@ -2,11 +2,8 @@
 
 namespace App\Entity;
 
-use App\Entity\Book;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\KindRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=KindRepository::class)
@@ -25,8 +22,6 @@ class Kind
      */
     private $designation;
 
-
-  
     public function getId(): ?int
     {
         return $this->id;
@@ -43,7 +38,4 @@ class Kind
 
         return $this;
     }
-
-
-
 }
