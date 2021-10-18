@@ -49,6 +49,11 @@ class Book
      */
     private $cover;
 
+    /**
+     * @ORM\Column(type="boolean", default=true, nullable=true)
+     */
+    private $available;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +127,18 @@ class Book
     public function setCover(?string $cover): self
     {
         $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getAvailable(): ?bool
+    {
+        return $this->available;
+    }
+
+    public function setAvailable(bool $available): self
+    {
+        $this->available = $available;
 
         return $this;
     }
