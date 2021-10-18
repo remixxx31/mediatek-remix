@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\BookRepository;
+use App\Entity\Kind;
+use App\Entity\Author;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BookRepository;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -25,7 +27,7 @@ class Book
     /**
      * @ORM\ManyToOne(targetEntity=Author::class)
      */
-    private $authorBook;
+    private $authorbook;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -36,6 +38,11 @@ class Book
      * @ORM\Column(type="string", length=4, nullable=true)
      */
     private $year;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Kind::class, inversedBy="books")
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -54,14 +61,14 @@ class Book
         return $this;
     }
 
-    public function getAuthorBook(): ?Author
+    public function getAuthorbook(): ?Author
     {
-        return $this->authorBook;
+        return $this->authorbook;
     }
 
-    public function setAuthorBook(?Author $authorBook): self
+    public function setAuthorbook(?Author $authorbook): self
     {
-        $this->authorBook = $authorBook;
+        $this->authorbook = $authorbook;
 
         return $this;
     }
@@ -89,4 +96,17 @@ class Book
 
         return $this;
     }
+
+    public function getCategory(): ?Kind
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Kind $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+    
 }

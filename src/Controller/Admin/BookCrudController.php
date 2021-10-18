@@ -3,6 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BookCrudController extends AbstractCrudController
@@ -17,7 +21,10 @@ class BookCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title'),
-            TextEditorField::new('description'),
+            IntegerField::new('year'),
+            TextareaField::new('description'),
+            AssociationField::new('authorbook'),
+            AssociationField::new('category')
         ];
     }
     

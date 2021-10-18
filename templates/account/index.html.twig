@@ -9,15 +9,18 @@
 {% block body %}
 	<hr>
 	<hr>
-    <div class="pt-5 pt-md-3">
-	<h1 class="text-center h1 py-3 fst-italic">Mon compte</h1>
-    </div>
+	<div class="pt-5 pt-md-3">
+		<h1 class="text-center h1 py-3 fst-italic">Mon compte</h1>
+	</div>
 	<div class="mx-auto col-10 col-md-6 text-center">
 		Bienvenue
 		<span class="fw-bold">{{app.user.firstname}}</span>
 		dans votre compte. C'est dans cet espace que vous allez pouvoir gérer toutes vos vos informations personnelles.
 		<hr>
-		<a href="{{path('account_password')}}">-Modifier son mot de passe</a>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item"><a href="{{path('account_password')}}">-Modifier son mot de passe</a ></li>
+			<li class="list-group-item"><a href="{{path('admin')}}">Accès au catalogue</a></li>
+		</ul>
 	</div>
 
 	{# {{dump(app.user.firstname.)}} #}
