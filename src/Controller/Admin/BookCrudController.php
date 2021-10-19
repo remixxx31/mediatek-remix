@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -25,7 +26,7 @@ class BookCrudController extends AbstractCrudController
         return [
             TextField::new('title'),
             IntegerField::new('year'),
-            TextareaField::new('description'),
+            TextEditorField::new('description'),
             AssociationField::new('authorbook'),
             AssociationField::new('category'),
             ImageField::new('cover')->setUploadDir("public/assets/images/cover_img")
