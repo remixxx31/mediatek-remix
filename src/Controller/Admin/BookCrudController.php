@@ -24,8 +24,8 @@ class BookCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title'),
-            IntegerField::new('year'),
+            TextField::new('title','titre'),
+            IntegerField::new('year','Année de parution'),
             TextEditorField::new('description'),
             AssociationField::new('authorbook'),
             AssociationField::new('category'),

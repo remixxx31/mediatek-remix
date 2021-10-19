@@ -25,7 +25,7 @@ class Book
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Author::class)
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
      */
     private $authorbook;
 
@@ -50,9 +50,14 @@ class Book
     private $cover;
 
     /**
-     * @ORM\Column(type="boolean", default=true, nullable=true)
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $available;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -139,6 +144,18 @@ class Book
     public function setAvailable(bool $available): self
     {
         $this->available = $available;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
