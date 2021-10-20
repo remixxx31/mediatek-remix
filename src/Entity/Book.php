@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Kind;
+use App\Entity\User;
 use App\Entity\Author;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BookRepository;
@@ -58,6 +59,15 @@ class Book
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
      */
     private $author;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books")
+     */
+    private $holder;
+
+ 
+
+
 
     public function getId(): ?int
     {
@@ -159,5 +169,33 @@ class Book
 
         return $this;
     }
+
+    public function getHolder(): ?User
+    {
+        return $this->holder;
+    }
+
+    public function setHolder(?User $holder): self
+    {
+        $this->holder = $holder;
+
+        return $this;
+    }
     
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+    
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+        
+        return $this;
+    }
+    
+    // public function __toString(){
+    //     return $this->email;
+        
+    // }
 }

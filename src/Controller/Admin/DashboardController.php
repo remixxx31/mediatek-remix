@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Book;
 use App\Entity\Kind;
 use App\Entity\User;
+use App\Entity\State;
 use App\Entity\Author;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,5 +37,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Livres', 'fas fa-book', Book::class);
         yield MenuItem::linkToCrud('Genres', 'fas fa-folder', Kind::class);
         yield MenuItem::linkToCrud('Auteurs', 'fas fa-feather', Author::class);
+        // yield MenuItem::linkToCrud('State', 'fas fa-hand', State::class);
     }
 }
