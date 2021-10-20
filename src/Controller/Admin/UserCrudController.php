@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -23,14 +24,15 @@ class UserCrudController extends AbstractCrudController
     // {
     //     return $crud
     //         ->setEntityLabelInSingular('book')
-    //         ->setEntityLabelInPlural('books')
-    //         ->setSearchFields(['id', 'Lastname', 'email']);
+    //         ->setEntityLabelInPlural('book');
+    //         // ->setSearchFields(['id', 'Lastname', 'email']);
     // }
 
     
     public function configureFields(string $pageName): iterable
     {
         return [
+            AssociationField::new('books'),
             EmailField::new('Email','Adresse mail')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
             TextField::new('Firstname','Prénom')->setDisabled(),
@@ -38,7 +40,6 @@ class UserCrudController extends AbstractCrudController
             DateField::new('Birthday','Date de naissance')->hideOnIndex(),
             ArrayField::new('roles')->hideOnIndex(),
             TextareaField::new('adress')->setDisabled(),
-            // AssociationField::new('email'),
 
         ];
     }

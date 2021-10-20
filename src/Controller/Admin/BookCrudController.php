@@ -52,8 +52,8 @@ class BookCrudController extends AbstractCrudController
             ImageField::new('cover')->setUploadDir("public/assets/images/cover_img")
             ->setBasePath("/assets/images/cover_img")
             ->setRequired(false),
-            BooleanField::new('available','Emprunt'),
-            AssociationField::new('holder','Détenteur')->autocomplete()->,
+            BooleanField::new('available','Réserver'),
+            AssociationField::new('holder','Détenteur')->autocomplete()->isGranted('ROLE_ADMIN'),
             TextEditorField::new('description'),
         ];
     }

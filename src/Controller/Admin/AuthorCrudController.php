@@ -25,9 +25,10 @@ class AuthorCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnIndex()->hideOnForm(),
             TextField::new('name'),
+            AssociationField::new('books'),
             TextEditorField::new('description'),
             DateField::new('birthdate'),
-            //  CollectionField::new('books'),
+
         ];
     }
     
