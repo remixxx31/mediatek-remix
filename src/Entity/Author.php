@@ -36,7 +36,7 @@ class Author
     private $name;
     
     /**
-    * @ORM\OneToMany(targetEntity=Book::class, mappedBy="author")
+    * @ORM\OneToMany(targetEntity=Book::class, mappedBy="authorbook")
     */
     private $books;
     

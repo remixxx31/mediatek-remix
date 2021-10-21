@@ -55,7 +55,7 @@ class BookCrudController extends AbstractCrudController
             ->setRequired(false),
             BooleanField::new('available','Réserver'),
             AssociationField::new('holder','Détenteur')->autocomplete()->setPermission('ROLE_AUTHOR'),
-            DateField::new('',"date d'emprunt"),
+            // DateField::new('',"date d'emprunt"),
             TextEditorField::new('description'),
         ];
     }

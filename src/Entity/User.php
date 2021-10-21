@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $adress;
 
     /**
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="holder")
+     * @ORM\ManyToOne(targetEntity=Book::class, inversedBy="holder")
      */
     private $books;
 

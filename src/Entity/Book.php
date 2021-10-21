@@ -55,13 +55,9 @@ class Book
      */
     private $available;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
-     */
-    private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="books")
      */
     private $holder;
 
@@ -198,9 +194,5 @@ class Book
         
     }
 
-    public function getLoanDate()
-    {
-        return $this->loan_date;
-    }
 
 }
