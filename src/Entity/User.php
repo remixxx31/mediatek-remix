@@ -59,17 +59,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $adress;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Book::class, inversedBy="holder")
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="holder",cascade={"persist"})
      */
-    private $books;
-
-
+    private $books_holded;
 
     public function __construct()
     {
-        $this->books = new ArrayCollection();
+        $this->books_holded = new ArrayCollection();
     }
 
+   
 
 
     public function getId(): ?int
@@ -212,36 +211,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection|Book[]
      */
-    public function getBooks(): Collection
+    public function getBooksHolded(): Collection
     {
-        return $this->books;
+        return $this->books_holded;
     }
 
-    public function addBook(Book $book): self
+    public function addBooksHolded(Book $booksHolded): self
     {
-        if (!$this->books->contains($book)) {
-            $this->books[] = $book;
-            $book->setHolder($this);
+        if (!$this->books_holded->contains($booksHolded)) {
+            $this->books_holded[] = $booksHolded;
+            $booksHolded->setHolder($this);
         }
 
         return $this;
     }
 
-    public function removeBook(Book $book): self
+    public function removeBooksHolded(Book $booksHolded): self
     {
-        if ($this->books->removeElement($book)) {
+        if ($this->books_holded->removeElement($booksHolded)) {
             // set the owning side to null (unless already changed)
-            if ($book->getHolder() === $this) {
-                $book->setHolder(null);
+            if ($booksHolded->getHolder() === $this) {
+                $booksHolded->setHolder(null);
             }
         }
 
         return $this;
     }
+
+      
     public function __toString(){
         return $this->email;
-        
     }
-
-    
 }

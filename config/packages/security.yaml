@@ -28,8 +28,9 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\LoginFormAuthentificatorAuthenticator
+           
             logout:
-                path: app_login
+                path: app_logout
                 # where to redirect after logout
                 target: app_login
 
@@ -42,5 +43,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles:  }
+        # - {path: ^/, roles: ROLE_USER }
         - { path: ^/compte, roles: ROLE_USER }

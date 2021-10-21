@@ -33,7 +33,7 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('books'),
+            AssociationField::new('books_holded','Livres en votre possesion'),
             EmailField::new('Email','Adresse mail')->setPermission('ROLE_ADMIN')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
             TextField::new('Firstname','Prénom')->setDisabled(),
