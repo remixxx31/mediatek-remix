@@ -55,9 +55,9 @@ class BookCrudController extends AbstractCrudController
             ->setBasePath("/assets/images/cover_img")
             ->setRequired(false),
             BooleanField::new('available','Réserver'),
-            DateField::new('loan_date','emprunté depuis le'),
+            DateField::new('loan_date','emprunté depuis le')->setPermission('ROLE_AUTHOR'),
             AssociationField::new('holder','Détenteur')->autocomplete()->setPermission('ROLE_AUTHOR'),
-            DateField::new('loan_date',"date d'emprunt")->setPermission('ROLE_AUTHOR'),
+            // DateField::new('loan_date',"date d'emprunt")->setPermission('ROLE_AUTHOR'),
             TextEditorField::new('description'),
         ];
     }

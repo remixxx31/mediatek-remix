@@ -10,12 +10,13 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-										           and uncomment the following Encore helpers to start using Symfony UX #}
+												           and uncomment the following Encore helpers to start using Symfony UX #}
 
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
 
 			<link rel="stylesheet" href="{{asset('assets/CSS/bootstrap.min.css')}}">
+			<script src="https://kit.fontawesome.com/6a69c5423c.js" crossorigin="anonymous"></script>
 		{% endblock %}
 
 		{% block javascripts %}
@@ -35,46 +36,46 @@
 				<button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-<div class="container d-flex justify-content-around">
-				<div class="collapse navbar-collapse px-2" id="navbarCollapse">
-					<ul class="navbar-nav mr-auto">
+				<div class="container d-flex justify-content-around">
+					<div class="collapse navbar-collapse px-2" id="navbarCollapse">
+						<ul class="navbar-nav mr-auto">
 
-						<div class="">
-							<li class="nav-item active">
-								<a class="nav-link text-secondary" href="#">Mes emprunts<span class="sr-only"></span>
-								</a>
-							</li>
-						</div>
+							<div class="">
+								<li class="nav-item active">
+									<a class="nav-link text-secondary" href="#">
+										<i class="fas fa-book"></i>
+									</i>Mes emprunts<span class="sr-only"></span>
+								</li>
+							</a>
+						</li>
+					</div>
 
-						<div class="">
-							<li class="nav-item active">
-								<a class="nav-link text-secondary" href="#">Le catalogue
-									<span class="sr-only"></span>
-								</a>
-							</li>
-						</div>
+					<div class="">
+						<li class="nav-item active">
+							<a class="nav-link text-secondary" href="#">Le catalogue
+								<span class="sr-only"></span>
+							</a>
+						</li>
+					</div>
 
-						<div class="ms-5">
-							{% if app.user %}
-								<a href="{{path('account')}}">Mon compte
-									<small>({{app.user.firstname}})</small>
-								</a>
-								|
-								<a href="{{path('app_logout')}}">Déconnexion</a>
-							{% else %}
+					<div class="ms-5">
+						{% if app.user %}
+							<a href="{{path('account')}}">Mon compte
+								<small>({{app.user.firstname}})</small>
+							</a>
+							|
+							<a href="{{path('app_logout')}}">Déconnexion</a>
+						{% else %}
 
-								<a href="{{path('app_login')}}">Connexion</a>
-								|
-								<a href="{{path('register')}}">Inscription</a>
-							{% endif %}
-						</div>
+							<a href="{{path('app_login')}}">Connexion</a>
+							|
+							<a href="{{path('register')}}">Inscription</a>
+						{% endif %}
+					</div>
 
-					</ul>
-</div>					{# FIn menu burger #}
-				</nav>
-			{% endblock %}
-			{%block brand %}{% endblock %}
-			{% block body %}{% endblock %}
+				</ul>
+			</div>
+			{# FIn menu burger #}
 		</body>
-	</body>
-</html>
+	</html>
+</nav>{% endblock %}{%block brand %}{% endblock %}{% block body %}{% endblock %}</body></body></html>
