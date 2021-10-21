@@ -56,9 +56,15 @@ class Book
     private $available;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books_holded",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books_holded",
+     * cascade={"persist"})
      */
     private $holder;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $loan_date;
 
 
 
@@ -179,5 +185,17 @@ class Book
 
     public function __toString(){
         return $this->title;
+    }
+
+    public function getLoanDate(): ?\DateTimeInterface
+    {
+        return $this->loan_date;
+    }
+
+    public function setLoanDate(?\DateTimeInterface $loan_date): self
+    {
+        $this->loan_date = $loan_date;
+
+        return $this;
     }
 }

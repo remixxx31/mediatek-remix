@@ -33,14 +33,14 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('books_holded','Livres en votre possesion'),
+            AssociationField::new('books_holded','Livres en votre possesion')->setDisabled()->addCssClass('fw-bold'),
             EmailField::new('Email','Adresse mail')->setPermission('ROLE_ADMIN')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
             TextField::new('Firstname','Prénom')->setDisabled(),
             TextField::new('Lastname','Nom')->setDisabled(),
             DateField::new('Birthday','Date de naissance')->hideOnIndex()->setDisabled(),
             ArrayField::new('roles')->hideOnIndex()->setPermission('ROLE_ADMIN'),
-            TextareaField::new('adress')->setDisabled(),
+            TextareaField::new('adress')->setPermission('ROLE_AUTHOR'),
 
         ];
     }

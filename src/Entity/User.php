@@ -59,7 +59,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $adress;
 
     /**
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="holder",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="holder",
+     * cascade={"persist"})
      */
     private $books_holded;
 
