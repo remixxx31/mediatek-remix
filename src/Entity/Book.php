@@ -65,9 +65,8 @@ class Book
      */
     private $holder;
 
+  
  
-
-
 
     public function getId(): ?int
     {
@@ -198,4 +197,10 @@ class Book
         return $this->title;
         
     }
+
+    public function getLoanDate()
+    {
+        return $this->loan_date;
+    }
+
 }

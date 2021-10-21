@@ -4,8 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Book;
 use APP\Controller\Admin\BookCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -53,7 +54,8 @@ class BookCrudController extends AbstractCrudController
             ->setBasePath("/assets/images/cover_img")
             ->setRequired(false),
             BooleanField::new('available','Réserver'),
-            AssociationField::new('holder','Détenteur')->autocomplete()->isGranted('ROLE_ADMIN'),
+            AssociationField::new('holder','Détenteur')->autocomplete()->setPermission('ROLE_AUTHOR'),
+            DateField::new('',"date d'emprunt"),
             TextEditorField::new('description'),
         ];
     }

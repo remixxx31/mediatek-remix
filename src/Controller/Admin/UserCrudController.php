@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use DateTime;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -33,12 +34,12 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             AssociationField::new('books'),
-            EmailField::new('Email','Adresse mail')->setDisabled(),
+            EmailField::new('Email','Adresse mail')->setPermission('ROLE_ADMIN')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
             TextField::new('Firstname','Prénom')->setDisabled(),
             TextField::new('Lastname','Nom')->setDisabled(),
-            DateField::new('Birthday','Date de naissance')->hideOnIndex(),
-            ArrayField::new('roles')->hideOnIndex(),
+            DateField::new('Birthday','Date de naissance')->hideOnIndex()->setDisabled(),
+            ArrayField::new('roles')->hideOnIndex()->setPermission('ROLE_ADMIN'),
             TextareaField::new('adress')->setDisabled(),
 
         ];
