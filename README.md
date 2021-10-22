@@ -5,7 +5,7 @@ les 2 derniers commits ont était fait pour revenir à un état stable.
 
 #Installation en local uniquement:
 
-  1. S'assurer que PHP, MySQL , symfony , composer soit bien installé.
+  1. S'assurer que PHP, MySQL , symfony , composer soient bien installé.
   
   2.Git clone adresse_du_repo dans fichier au choix
   
