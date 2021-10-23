@@ -21,19 +21,20 @@ class UserCrudController extends AbstractCrudController
     {
         return User::class;
     }
-    // public function configureCrud(Crud $crud): Crud
-    // {
-    //     return $crud
-    //         ->setEntityLabelInSingular('book')
-    //         ->setEntityLabelInPlural('book');
-    //         // ->setSearchFields(['id', 'Lastname', 'email']);
-    // }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            
+            ->setSearchFields(['id', 'Lastname', 'email']);
+            
+    }
 
     
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('books_holded','Livres en votre possesion')->setDisabled()->addCssClass('fw-bold'),
+            AssociationField::new('books_holded','Livres en votre possesion')->setDisabled('ROLE_USER')
+            ->addCssClass('fw-bold'),
             EmailField::new('Email','Adresse mail')->setPermission('ROLE_ADMIN')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
             TextField::new('Firstname','Prénom')->setDisabled(),
