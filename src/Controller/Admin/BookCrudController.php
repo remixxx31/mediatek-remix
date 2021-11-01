@@ -47,13 +47,13 @@ class BookCrudController extends AbstractCrudController
     {
 
         return [
-            TextField::new('title','titre')->setDisabled('ROLE_USER'),
-            IntegerField::new('year','Année de parution')->hideOnIndex()->setDisabled('ROLE_USER'),
-            AssociationField::new('authorbook', 'Auteur')->setDisabled('ROLE_USER'),
-            AssociationField::new('category','Catégorie')->setDisabled('ROLE_USER'),
+            TextField::new('title','titre')->setPermission('ROLE_AUTHOR'),
+            IntegerField::new('year','Année de parution')->hideOnIndex()->setPermission('ROLE_AUTHOR'),
+            AssociationField::new('authorbook', 'Auteur')->setPermission('ROLE_AUTHOR'),
+            AssociationField::new('category','Catégorie')->setPermission('ROLE_AUTHOR'),
             ImageField::new('cover')->setUploadDir("public/assets/images/cover_img")
             ->setBasePath("/assets/images/cover_img")
-            ->setRequired(false)->setDisabled('ROLE_USER'),
+            ->setRequired(false)->setDisabled('ROLE_USER')->setPermission('ROLE_AUTHOR'),
             BooleanField::new('available','Réserver'),
             DateField::new('loan_date','emprunté depuis le')->setPermission('ROLE_AUTHOR'),
             AssociationField::new('holder','Détenteur')->autocomplete()->setPermission('ROLE_AUTHOR'),

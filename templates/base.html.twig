@@ -16,6 +16,7 @@
 			{#{{ encore_entry_link_tags('app') }}#}
 
 			<link rel="stylesheet" href="{{asset('assets/CSS/bootstrap.min.css')}}">
+			<link rel="stylesheet" href="{{asset('assets/CSS/mediamix.css')}}">
 			<script src="https://kit.fontawesome.com/6a69c5423c.js" crossorigin="anonymous"></script>
 		{% endblock %}
 
@@ -28,20 +29,20 @@
 	</head>
 	<body>
 		{% block nav%}
-			<nav class="navbar navbar-expand-md navbar-dark d-flex container-fluid justify-content-around d-flex fixed-top bg-light mb-5 ">
-				<div class="px-3">
-					<a class="navbar-brand float-left" href="#">Mediamix</a>
+			<nav class="navbar navbar-expand-md navbar-dark h-20 pt-2 d-flex align-item-center container-fluid  fixed-top bg-light mb-5 ">
+				<div class="px-3 w-15">
+					<a class="navbar-brand float-left" href="#">Mediatek</a>
 				</div>
 				{# Menu burger #}
 				<button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarCollapse"
 				 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="container d-flex justify-content-around">
+				<div class="container w-85">
 					<div class="collapse navbar-collapse px-2" id="navbarCollapse">
 						<ul class="navbar-nav mr-auto">
 
-							<div class="">
+							<div class="w-20">
 								<li class="nav-item active">
 									<a class="nav-link text-secondary" href="#">
 										<i class="fas fa-book"></i>
@@ -51,7 +52,7 @@
 						</li>
 					</div>
 
-					<div class="">
+					<div class="w-20">
 						<li class="nav-item active">
 							<a class="nav-link text-secondary" href="#">Le catalogue
 								<span class="sr-only"></span>
@@ -75,8 +76,8 @@
 					</div>
 
 				</ul>
-			</div>
 			{# FIn menu burger #}
+	</nav>
 		</body>
 	</html>
-</nav>{% endblock %}{%block brand %}{% endblock %}{% block body %}{% endblock %}</body></body></html>
+{% endblock %}{%block brand %}{% endblock %}{% block body %}{% endblock %}</body></html>

@@ -1,3 +1,12 @@
 .custom-nav, .custom-nav a{
  color: rgb(242, 242, 242);
+
+
+a:hover{
+  background:rgb(114, 123, 132);
+  color:white;
+}
+
+.custom-nav{
+  height: 200px;
 }
