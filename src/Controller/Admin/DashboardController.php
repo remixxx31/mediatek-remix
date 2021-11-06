@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
@@ -20,16 +21,26 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        // return parent::index();
+            // redirect to some CRUD controller
+            // $routeBuilder = $this->get(AdminUrlGenerator::class);
+            // return $this->redirect($routeBuilder->setController(BookCrudController::class)->generateUrl());            
+            $routeBuilder = $this->get(AdminUrlGenerator::class);
+            return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
+        // you can also redirect to different pages depending on the current user
+        // if ('jane' === $this->getUser()->getUsername()) {
+        //     return $this->redirect('...');
+        // }
+
     }
 
-    // public function configureDashboard(): Dashboard
-    // {
-    //     return Dashboard::new()
-    //         ->setTitle('Mediatek');
+    public function configureDashboard(): Dashboard
+    {
+        return Dashboard::new()
+            ->setTitle('Mediatek');
             
             
-    // }
+    }
 
     public function configureMenuItems(): iterable
     {

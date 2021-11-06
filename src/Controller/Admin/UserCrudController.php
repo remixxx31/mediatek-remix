@@ -35,14 +35,13 @@ class UserCrudController extends AbstractCrudController
         return [
             AssociationField::new('books_holded','Livres en votre possesion')->setDisabled('ROLE_USER')
             ->addCssClass('fw-bold'),
-            EmailField::new('Email','Adresse mail')->setPermission('ROLE_ADMIN')->setDisabled(),
+            EmailField::new('Email','Adresse mail')->setPermission('ROLE_AUTHOR')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
             TextField::new('Firstname','Prénom')->setDisabled(),
             TextField::new('Lastname','Nom')->setDisabled(),
             DateField::new('Birthday','Date de naissance')->hideOnIndex()->setDisabled(),
             ArrayField::new('roles')->hideOnIndex()->setPermission('ROLE_ADMIN'),
             TextareaField::new('adress')->setPermission('ROLE_AUTHOR'),
-
         ];
     }
     

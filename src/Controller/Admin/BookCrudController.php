@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Book;
-use APP\Controller\Admin\BookCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -47,17 +46,18 @@ class BookCrudController extends AbstractCrudController
     {
 
         return [
-            TextField::new('title','titre')->setPermission('ROLE_AUTHOR'),
-            IntegerField::new('year','Année de parution')->hideOnIndex()->setPermission('ROLE_AUTHOR'),
-            AssociationField::new('authorbook', 'Auteur')->setPermission('ROLE_AUTHOR'),
-            AssociationField::new('category','Catégorie')->setPermission('ROLE_AUTHOR'),
-            ImageField::new('cover')->setUploadDir("public/assets/images/cover_img")
+            TextField::new('title','titre')->setPermission('ROLE_AUTHOR')->setDisabled('ROLE_USER'),
+            IntegerField::new('year','Année de parution')->hideOnIndex()->setDisabled('ROLE_USER'),
+            AssociationField::new('authorbook', 'Auteur')->setDisabled('ROLE_USER'),
+            AssociationField::new('category','Catégorie')->setDisabled('ROLE_USER'),
+            ImageField::new('cover','image')->setUploadDir("public/assets/images/cover_img")
             ->setBasePath("/assets/images/cover_img")
-            ->setRequired(false)->setDisabled('ROLE_USER')->setPermission('ROLE_AUTHOR'),
+            ->setRequired(false)->setDisabled('ROLE_USER'),
             BooleanField::new('available','Réserver'),
-            DateField::new('loan_date','emprunté depuis le')->setPermission('ROLE_AUTHOR'),
+            DateField::new('loan_date','emprunté depuis le')->setDisabled('ROLE_USER'),
             AssociationField::new('holder','Détenteur')->autocomplete()->setPermission('ROLE_AUTHOR'),
             // DateField::new('loan_date',"date d'emprunt")->setPermission('ROLE_AUTHOR'),
+            // DateTimeField::new('createdAt')->onlyOnDetail(),
             TextEditorField::new('description')->setDisabled('ROLE_USER'),
         ];
     }

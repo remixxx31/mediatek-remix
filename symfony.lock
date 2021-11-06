@@ -611,7 +611,7 @@
         ]
     },
     "symfony/uid": {
-        "version": "v5.3.3"
+        "version": "v5.3.10"
     },
     "symfony/validator": {
         "version": "5.3",
