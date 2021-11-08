@@ -23,26 +23,22 @@ class UserCrudController extends AbstractCrudController
     }
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud
-            
-            ->setSearchFields(['id', 'Lastname', 'email']);
-            
+        return $crud->setSearchFields(['id', 'lastname', 'email']);
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('books_holded','Livres en votre possesion')->setDisabled('ROLE_USER')
-            ->addCssClass('fw-bold'),
-            EmailField::new('Email','Adresse mail')->setPermission('ROLE_AUTHOR')->setDisabled(),
+            AssociationField::new('books_holded', 'Livres en votre possesion')
+                ->addCssClass('fw-bold'),
+            EmailField::new('email', 'Adresse mail')->setPermission('ROLE_AUTHOR')->setDisabled(),
             HiddenField::new('Password')->hideOnIndex(),
-            TextField::new('Firstname','Prénom')->setDisabled(),
-            TextField::new('Lastname','Nom')->setDisabled(),
-            DateField::new('Birthday','Date de naissance')->hideOnIndex()->setDisabled(),
+            TextField::new('Firstname', 'Prénom')->setDisabled(),
+            TextField::new('lastname', 'Nom')->setDisabled(),
+            DateField::new('birthday', 'Date de naissance')->hideOnIndex()->setDisabled(),
             ArrayField::new('roles')->hideOnIndex()->setPermission('ROLE_ADMIN'),
             TextareaField::new('adress')->setPermission('ROLE_AUTHOR'),
         ];
     }
-    
 }

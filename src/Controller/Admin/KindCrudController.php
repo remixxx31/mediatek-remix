@@ -20,6 +20,7 @@ class KindCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnIndex()->hideOnForm(),
             TextField::new('designation')->setDisabled('ROLE_USER'),
+            AssociationField::new('category')
         ];
     }
    

@@ -40,26 +40,28 @@ class BookCrudController extends AbstractCrudController
     //     ->disable(Action::DELETE)
     //     ->add( Crud::PAGE_INDEX, $linkExterne)
 
-      
+
     // }
     public function configureFields(string $pageName): iterable
     {
+        // dd($this->isGranted('ROLE_USER'));
+        $hasNotRoleAuthor = !$this->isGranted('ROLE_AUTHOR');
+        // $books = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
         return [
-            TextField::new('title','titre')->setPermission('ROLE_AUTHOR')->setDisabled('ROLE_USER'),
-            IntegerField::new('year','Année de parution')->hideOnIndex()->setDisabled('ROLE_USER'),
-            AssociationField::new('authorbook', 'Auteur')->setDisabled('ROLE_USER'),
-            AssociationField::new('category','Catégorie')->setDisabled('ROLE_USER'),
-            ImageField::new('cover','image')->setUploadDir("public/assets/images/cover_img")
-            ->setBasePath("/assets/images/cover_img")
-            ->setRequired(false)->setDisabled('ROLE_USER'),
-            BooleanField::new('available','Réserver'),
-            DateField::new('loan_date','emprunté depuis le')->setDisabled('ROLE_USER'),
-            AssociationField::new('holder','Détenteur')->autocomplete()->setPermission('ROLE_AUTHOR'),
+            TextField::new('title', 'titre')->setDisabled($hasNotRoleAuthor),
+            IntegerField::new('year', 'Année de parution')->hideOnIndex()->setDisabled($hasNotRoleAuthor),
+            AssociationField::new('authorbook', 'Auteur')->setDisabled($hasNotRoleAuthor),
+            AssociationField::new('category', 'Catégorie')->setDisabled($hasNotRoleAuthor),
+            ImageField::new('cover', 'image')->setUploadDir("public/assets/images/cover_img")
+                ->setBasePath("/assets/images/cover_img")
+                ->setRequired(false)->setDisabled($hasNotRoleAuthor),
+            BooleanField::new('available', 'Réserver'),
+            DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor),
+            AssociationField::new('holder', 'Détenteur')->autocomplete()->setDisabled($hasNotRoleAuthor)->setPermission('ROLE_AUTHOR'),
             // DateField::new('loan_date',"date d'emprunt")->setPermission('ROLE_AUTHOR'),
             // DateTimeField::new('createdAt')->onlyOnDetail(),
-            TextEditorField::new('description')->setDisabled('ROLE_USER'),
+            TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
         ];
     }
-    
 }

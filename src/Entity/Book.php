@@ -56,8 +56,7 @@ class Book
     private $available;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books_holded",
-     * cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books_holded"),
      */
     private $holder;
 
