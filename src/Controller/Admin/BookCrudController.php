@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Book;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -59,9 +60,18 @@ class BookCrudController extends AbstractCrudController
             BooleanField::new('available', 'Réserver'),
             DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor),
             AssociationField::new('holder', 'Détenteur')->autocomplete()->setDisabled($hasNotRoleAuthor)->setPermission('ROLE_AUTHOR'),
-            // DateField::new('loan_date',"date d'emprunt")->setPermission('ROLE_AUTHOR'),
+            DateField::new('returnLoanDate',"date de retour")->setDisabled($hasNotRoleAuthor),
             // DateTimeField::new('createdAt')->onlyOnDetail(),
             TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
         ];
+    }
+//pour ajouter le fichier JS
+    public function configureAssets(Assets $assets): Assets
+    {
+        return $assets
+            // adds the CSS and JS assets associated to the given Webpack Encore entry
+            // it's equivalent to adding these inside the <head> element:
+            // {{ encore_entry_link_tags('...') }} and {{ encore_entry_script_tags('...') }}
+            ->addWebpackEncoreEntry('bookCrud');
     }
 }

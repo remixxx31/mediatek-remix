@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use DateInterval;
 use App\Entity\Kind;
 use App\Entity\User;
 use App\Entity\Author;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BookRepository;
 
@@ -67,7 +69,7 @@ class Book
 
 
 
-  
+
 
     public function getId(): ?int
     {
@@ -182,7 +184,8 @@ class Book
         return $this;
     }
 
-    public function __toString(){
+    public function __toString()
+    {
         return $this->title;
     }
 
@@ -196,5 +199,20 @@ class Book
         $this->loan_date = $loan_date;
 
         return $this;
+    }
+    //méthode date de retour 
+    public function getReturnLoanDate(): ?\DateTimeInterface
+    {
+        if ($this->loan_date !== null) {
+            $dateString = $this->loan_date->format('Y-m-d');
+            // 2021-11-10
+            $date = new \DateTime($dateString);
+            // ObjectDateTime{2021-11-10}
+
+            // $date = clone $this->loan_date;
+            $date->add(new DateInterval('P30D'));
+            return $date;
+        }
+        return null;
     }
 }
