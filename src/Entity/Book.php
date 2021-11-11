@@ -68,6 +68,8 @@ class Book
     private $loan_date;
 
 
+    public $returnLoanDate;
+    public $disableAvailable;
 
 
 
@@ -214,5 +216,10 @@ class Book
             return $date;
         }
         return null;
+    }
+
+    public function getDisableAvailable()
+    {
+        return $this->holder !== null;
     }
 }

@@ -4,14 +4,15 @@ namespace App\Controller\Admin;
 
 use App\Entity\Book;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -43,10 +44,24 @@ class BookCrudController extends AbstractCrudController
 
 
     // }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            // the visible title at the top of the page and the content of the <title> element
+            // it can include these placeholders:
+            //   %entity_name%, %entity_as_string%,
+            //   %entity_id%, %entity_short_id%
+            //   %entity_label_singular%, %entity_label_plural%
+            ->setPageTitle('index', 'Livres')
+            ->setPageTitle('edit', 'Livre')
+            // the help message displayed to end users (it can contain HTML tags)
+            ->setHelp('edit', 'Vous pouvez modifier les informations sur le livre');
+    }
     public function configureFields(string $pageName): iterable
     {
         // dd($this->isGranted('ROLE_USER'));
         $hasNotRoleAuthor = !$this->isGranted('ROLE_AUTHOR');
+
         // $books = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
         return [
@@ -59,13 +74,14 @@ class BookCrudController extends AbstractCrudController
                 ->setRequired(false)->setDisabled($hasNotRoleAuthor),
             BooleanField::new('available', 'Réserver'),
             DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor),
+            DateField::new('returnLoanDate', 'A rendre au plus tard')->setDisabled($hasNotRoleAuthor),
             AssociationField::new('holder', 'Détenteur')->autocomplete()->setDisabled($hasNotRoleAuthor)->setPermission('ROLE_AUTHOR'),
-            DateField::new('returnLoanDate',"date de retour")->setDisabled($hasNotRoleAuthor),
             // DateTimeField::new('createdAt')->onlyOnDetail(),
             TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
+            BooleanField::new('disableAvailable')->onlyWhenUpdating(),
         ];
     }
-//pour ajouter le fichier JS
+    //pour ajouter le fichier JS
     public function configureAssets(Assets $assets): Assets
     {
         return $assets
@@ -75,3 +91,7 @@ class BookCrudController extends AbstractCrudController
             ->addWebpackEncoreEntry('bookCrud');
     }
 }
+// // callables also receives the entire entity instance as the second argument
+// ->formatValue(function ($value, $entity) {
+//     return $entity->isPublished() ? $value : 'Coming soon...';
+// });

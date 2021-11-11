@@ -23,9 +23,13 @@ class UserCrudController extends AbstractCrudController
     }
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setSearchFields(['id', 'lastname', 'email']);
-    }
+        return $crud->setSearchFields(['id', 'lastname', 'email'])
+        ->setPageTitle('index', 'Abonnés')->setPageTitle('edit', 'Abonné')
+        ->setHelp('edit', 'Les informations vous concernant');
 
+        // the help message displayed to end users (it can contain HTML tags)
+    }
+    
 
     public function configureFields(string $pageName): iterable
     {
