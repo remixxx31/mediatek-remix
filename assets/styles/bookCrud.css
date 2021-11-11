@@ -1,0 +1,6 @@
+#Book_disableAvailable {
+  display: none;
+}
+label[for="Book_disableAvailable"] {
+  display: none;
+}
