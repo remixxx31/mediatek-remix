@@ -27,15 +27,11 @@ class RegisterController extends AbstractController
     {
         $user = new User();//instancion de la classe user
         $form = $this->createForm(RegisterType::class);
-
         $form ->handleRequest($request);//recupère saisie de l'utilisateur
-
         if($form->isSubmitted()&&$form->isValid()){
             $user = $form->getData();
             $password = $hasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
-           
-
             $this->entityManager->persist($user);
             $this->entityManager->flush();
             // dd($user);
@@ -43,10 +39,8 @@ class RegisterController extends AbstractController
             return new RedirectResponse($urlgenerator->generate('app_login'));
         }
 
-
         return $this->render('register/index.html.twig', [
             'form' => $form->createView(), //création de la vue
-            
         ]);
     }
 }

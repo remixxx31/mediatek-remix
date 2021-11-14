@@ -54,8 +54,10 @@ class BookCrudController extends AbstractCrudController
             //   %entity_label_singular%, %entity_label_plural%
             ->setPageTitle('index', 'Livres')
             ->setPageTitle('edit', 'Livre')
+            ->setPageTitle('new', 'Ajouter un Livre')
             // the help message displayed to end users (it can contain HTML tags)
-            ->setHelp('edit', 'Vous pouvez modifier les informations sur le livre');
+            ->setHelp('edit', 'Vous pouvez modifier les informations sur le livre')
+            ->setHelp('new', 'Vous pouvez ajouter un livre dans la catalogue de la médiathèque');
     }
     public function configureFields(string $pageName): iterable
     {
@@ -73,6 +75,7 @@ class BookCrudController extends AbstractCrudController
                 ->setBasePath("/assets/images/cover_img")
                 ->setRequired(false)->setDisabled($hasNotRoleAuthor),
             BooleanField::new('available', 'Réserver'),
+            TextField::new('reservedFor', 'réservé pour')->setPermission('ROLE_AUTHOR'),
             DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor),
             DateField::new('returnLoanDate', 'A rendre au plus tard')->setDisabled($hasNotRoleAuthor),
             AssociationField::new('holder', 'Détenteur')->autocomplete()->setDisabled($hasNotRoleAuthor)->setPermission('ROLE_AUTHOR'),

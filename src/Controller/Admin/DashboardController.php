@@ -37,11 +37,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Mediatek');
-            
-            
+            ->setTitle('Mediatek');    
     }
-
     public function configureMenuItems(): iterable
     {
         // yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
@@ -50,7 +47,7 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class)->
         // setPermission('ROLE_AUTHOR');
 
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-eye', User::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Livres', 'fas fa-book', Book::class);
         yield MenuItem::linkToCrud('Genres', 'fas fa-folder', Kind::class);
         yield MenuItem::linkToCrud('Auteurs', 'fas fa-feather', Author::class);

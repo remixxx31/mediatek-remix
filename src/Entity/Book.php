@@ -70,9 +70,8 @@ class Book
 
     public $returnLoanDate;
     public $disableAvailable;
-
-
-
+    public $reservedFor;
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -221,5 +220,25 @@ class Book
     public function getDisableAvailable()
     {
         return $this->holder !== null;
+    }
+
+    /**
+     * Get the value of reservedFor
+     */ 
+    public function getReservedFor()
+    {
+        return $this->reservedFor;
+    }
+
+    /**
+     * Set the value of reservedFor
+     *
+     * @return  self
+     */ 
+    public function setReservedFor($reservedFor)
+    {
+        $this->reservedFor = $reservedFor;
+
+        return $this;
     }
 }
