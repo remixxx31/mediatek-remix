@@ -67,20 +67,23 @@ class BookCrudController extends AbstractCrudController
         // $books = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
         return [
-            TextField::new('title', 'titre')->setDisabled($hasNotRoleAuthor),
-            IntegerField::new('year', 'Année de parution')->hideOnIndex()->setDisabled($hasNotRoleAuthor),
-            AssociationField::new('authorbook', 'Auteur')->setDisabled($hasNotRoleAuthor),
-            AssociationField::new('category', 'Catégorie')->setDisabled($hasNotRoleAuthor),
+            FormField::addPanel('Descriptif du livre'),
+            TextField::new('title', 'titre')->setDisabled($hasNotRoleAuthor)->setColumns(7),
+            IntegerField::new('year', 'Année de parution')->hideOnIndex()->setDisabled($hasNotRoleAuthor)->setColumns(5),
+            AssociationField::new('authorbook', 'Auteur')->setDisabled($hasNotRoleAuthor)->setColumns(7),
+            AssociationField::new('category', 'Catégorie')->setDisabled($hasNotRoleAuthor)->setColumns(5),
             ImageField::new('cover', 'image')->setUploadDir("public/assets/images/cover_img")
-                ->setBasePath("/assets/images/cover_img")
-                ->setRequired(false)->setDisabled($hasNotRoleAuthor),
-            BooleanField::new('available', 'Réserver'),
-            TextField::new('reservedFor', 'réservé pour')->setPermission('ROLE_AUTHOR'),
-            DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor),
-            DateField::new('returnLoanDate', 'A rendre au plus tard')->setDisabled($hasNotRoleAuthor),
+            ->setBasePath("/assets/images/cover_img")
+            ->setRequired(false)->setDisabled($hasNotRoleAuthor),
+            TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
+            FormField::addPanel('Gestion du prêt'),
+            BooleanField::new('available', 'Réserver')->setColumns(2),
+            TextField::new('reservedFor', 'réservé pour')->setColumns(4),
+            FormField::addRow(),
+            DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor)->setColumns(4),
+            DateField::new('returnLoanDate', 'A rendre au plus tard')->setDisabled($hasNotRoleAuthor)->setColumns(4),
             AssociationField::new('holder', 'Détenteur')->autocomplete()->setDisabled($hasNotRoleAuthor)->setPermission('ROLE_AUTHOR'),
             // DateTimeField::new('createdAt')->onlyOnDetail(),
-            TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
             BooleanField::new('disableAvailable')->onlyWhenUpdating(),
         ];
     }

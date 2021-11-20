@@ -29,10 +29,11 @@ class KindCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
+        $hasNotRoleAuthor = !$this->isGranted('ROLE_AUTHOR');
+
         return [
             IdField::new('id')->hideOnIndex()->hideOnForm(),
-            TextField::new('designation')->setDisabled('ROLE_USER'),
-            AssociationField::new('category')
+            TextField::new('designation')->setDisabled('$hasNotRoleAuthor'),
         ];
     }
    
