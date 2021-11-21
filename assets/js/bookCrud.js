@@ -18,9 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let radioAvailable = document.getElementById("Book_available");
     let isRadioAvailable = document.getElementById('Book_disableAvailable').checked;
-  //sélection de l'adresse email de l'utilisateur connecté
+    //sélection de l'adresse email de l'utilisateur connecté
     let userEmailConnected = document.querySelector("a.user-details>span.user-name").innerHTML;
-    let bookReservedFor = document.getElementById("Book_reservedFor").value;
+    let bookReservedFor = document.getElementById("Book_reservedFor");
+    bookReservedFor.setAttribute("readonly", "readonly");
     // let inputReservedFor = bookReservedFor.innerHTML;
     // console.log(inputReservedFor);
     // bookReservedFor = userEmailConnected;
@@ -51,12 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
           inputReturnDateLoan.valueAsDate = returnDateLoan;
           radioAvailable.disabled = true;
           radioAvailable.checked = false;
+          bookReservedFor.value = null;
         }
-      }); 
+      });
     }
-// Lorsque l'évènement date d'emprunt change...
+    // Lorsque l'évènement date d'emprunt change...
     inputDateLoan.addEventListener('change', () => {
-    // 
+      // 
       if (inputDateLoan.value) {
         const dateLoan = new Date(inputDateLoan.value);
         const returnDateLoan = new Date();
@@ -72,18 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lorsque le bouton de réservation est activé...
 
     
-
+    radioAvailable.addEventListener('change',() => {
+    if (radioAvailable.checked === true) {
+      console.log(radioAvailable.checked);
+      bookReservedFor.value = userEmailConnected;
+      console.log(bookReservedFor);
+    } else if (radioAvailable.checked === false){
+      bookReservedFor.value = null;
+      console.log(bookReservedFor);
+    };
+  })
   }
 
 
 })
   
-     if (radioAvailable.checked === true)
-    {
-      console.log(radioAvailable.checked);
-      bookReservedFor = userEmailConnected;
-      console.log(bookReservedFor);
-    } else {
-      bookReservedFor = null;
-      console.log(bookReservedFor);
-    } ;
