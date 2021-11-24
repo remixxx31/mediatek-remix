@@ -15,13 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
     //sélection des champ dates
     let inputDateLoan = document.getElementById("Book_loan_date");
     let inputReturnDateLoan = document.getElementById("Book_returnLoanDate");
-
+    
     let radioAvailable = document.getElementById("Book_available");
     let isRadioAvailable = document.getElementById('Book_disableAvailable').checked;
     //sélection de l'adresse email de l'utilisateur connecté
     let userEmailConnected = document.querySelector("a.user-details>span.user-name").innerHTML;
     let bookReservedFor = document.getElementById("Book_reservedFor");
     bookReservedFor.setAttribute("readonly", "readonly");
+    let reservedByAnother = userEmailConnected !== bookReservedFor.value;
+    console.log(reservedByAnother);
     // let inputReservedFor = bookReservedFor.innerHTML;
     // console.log(inputReservedFor);
     // bookReservedFor = userEmailConnected;
@@ -72,16 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     radioAvailable.disabled = isRadioAvailable
     // Lorsque le bouton de réservation est activé...
-
+  //   if (reservedByAnother) {
+    
+  // }
     
     radioAvailable.addEventListener('change',() => {
     if (radioAvailable.checked === true) {
-      console.log(radioAvailable.checked);
       bookReservedFor.value = userEmailConnected;
-      console.log(bookReservedFor);
     } else if (radioAvailable.checked === false){
       bookReservedFor.value = null;
-      console.log(bookReservedFor);
     };
   })
   }

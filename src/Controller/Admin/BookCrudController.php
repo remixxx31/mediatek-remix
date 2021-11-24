@@ -26,24 +26,6 @@ class BookCrudController extends AbstractCrudController
         return Book::class;
     }
 
-    // public function configureActions(Actions $actions):Actions
-
-    // {
-    //     $LinkExterne = Action::new('LinkExterne','Github','fa fa-glob')
-    //      ->linkToUrl(url:"https://github.com")
-    //      ->addCssClass(cssClass:'btn btn-success')
-    //      ->setHtmlAttributes([
-    //          'target' => '_blank',
-    //      ])
-    //     ->addCssClass(cssClass:'btn btn-success')
-    //     ;
-    //     return $actions
-    //     ->setPermission(Action::DELETE, 'ROLE_BOOK_CRUD')
-    //     ->disable(Action::DELETE)
-    //     ->add( Crud::PAGE_INDEX, $linkExterne)
-
-
-    // }
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -63,7 +45,7 @@ class BookCrudController extends AbstractCrudController
     {
         // dd($this->isGranted('ROLE_USER'));
         $hasNotRoleAuthor = !$this->isGranted('ROLE_AUTHOR');
-
+        
         // $books = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
         return [

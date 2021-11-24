@@ -67,10 +67,13 @@ class Book
      */
     private $loan_date;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $reservedFor;
 
     public $returnLoanDate;
     public $disableAvailable;
-    public $reservedFor;
    
     public function getId(): ?int
     {
