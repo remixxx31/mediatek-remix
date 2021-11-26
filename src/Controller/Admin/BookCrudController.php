@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class BookCrudController extends AbstractCrudController
@@ -25,7 +26,14 @@ class BookCrudController extends AbstractCrudController
     {
         return Book::class;
     }
-
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            // ...
+            ->setPermission(Action::NEW, 'ROLE_AUTHOR')
+            ->setPermission(Action::DELETE, 'ROLE_ADMIN')
+        ;
+    }
     public function configureCrud(Crud $crud): Crud
     {
         return $crud

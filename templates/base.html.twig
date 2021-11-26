@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -48,14 +48,14 @@
 
 					<div class="w-20">
 						<li class="nav-item active">
-							<a class="nav-link text-secondary" href="{{path('admin')}}"">Le catalogue
+							<a class="nav-link text-secondary" href="{{path('admin')}}">Le catalogue
 								<span class="sr-only"></span>
 							</a>
 						</li>
 					</div>
 
-					<div class="ms-5">
 						{% if app.user %}
+					<div class="flex-end text-end">
 							<a href="{{path('account')}}">Mon compte
 								<small>({{app.user.firstname}})</small>
 							</a>

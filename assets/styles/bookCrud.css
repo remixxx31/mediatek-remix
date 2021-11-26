@@ -4,4 +4,7 @@
 label[for="Book_disableAvailable"] {
   display: none;
 }
-
+.notAvailable{
+  text-decoration-line: line-through;
+  color:chocolate;
+}

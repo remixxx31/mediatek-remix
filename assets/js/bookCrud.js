@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const crudAction = urlParams.get('crudAction')
   
   if (crudAction === 'edit') {
+    //sélection du titre
+    let bookTitle = document.getElementById("Book_title");
+    // sélection du label réservé
+    let labelBookReserved = document.querySelector("#content-2 > div > div:nth-child(2) > div > label");
     // sélection du champ holder
     let selectAutocomplete = document.getElementById("Book_holder_autocomplete");
     //sélection des champ dates
@@ -22,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let userEmailConnected = document.querySelector("a.user-details>span.user-name").innerHTML;
     let bookReservedFor = document.getElementById("Book_reservedFor");
     bookReservedFor.setAttribute("readonly", "readonly");
+
     let reservedByAnother = userEmailConnected !== bookReservedFor.value;
     console.log(reservedByAnother);
     // let inputReservedFor = bookReservedFor.innerHTML;
@@ -49,12 +54,18 @@ document.addEventListener("DOMContentLoaded", () => {
           inputDateLoan.value = null;
           inputReturnDateLoan.value = null;
           radioAvailable.disabled = false;
+          bookTitle.classList.remove("notAvailable");
+          labelBookReserved.classList.remove("notAvailable");
+          
         } else {
           inputDateLoan.valueAsDate = dateLoan;
           inputReturnDateLoan.valueAsDate = returnDateLoan;
           radioAvailable.disabled = true;
           radioAvailable.checked = false;
           bookReservedFor.value = null;
+          bookTitle.classList.add("notAvailable");
+          labelBookReserved.classList.add("notAvailable");
+
         }
       });
     }
