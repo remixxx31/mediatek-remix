@@ -191,7 +191,8 @@ class Book
     public function __toString()
     {
         return $this->title;
-    }
+    } 
+
 
     public function getLoanDate(): ?\DateTimeInterface
     {

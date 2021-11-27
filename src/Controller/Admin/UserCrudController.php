@@ -14,7 +14,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
+/**
+ * @Security("is_granted('ROLE_AUTHOR')")
+ */
 class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

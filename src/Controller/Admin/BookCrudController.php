@@ -68,7 +68,7 @@ class BookCrudController extends AbstractCrudController
             TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
             FormField::addPanel('Gestion du prêt'),
             BooleanField::new('available', 'Réserver')->setColumns(2),
-            TextField::new('reservedFor', 'réservé pour')->setColumns(4),
+            TextField::new('reservedFor', 'réservé pour')->setColumns(4)->setDisabled(),
             FormField::addRow(),
             DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor)->setColumns(4),
             DateField::new('returnLoanDate', 'A rendre au plus tard')->setDisabled($hasNotRoleAuthor)->setColumns(4),

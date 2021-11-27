@@ -9,8 +9,9 @@
 {% block body %}
 	<hr>
 	<hr>
-	<div class="pt-5 pt-md-3">
-		<h1 class="text-center h1 py-3 fst-italic">Mon compte</h1>
+	<div class="pt-5 pt-md-3 d-flex justify-content-center">
+		<h1 class="text-center h2 py-3 fst-italic  px-2 text-muted">Mon compte</h1>
+		<i class="fas fa-user-circle px-2" style="font-size:40px;color:#51aad6"></i>
 	</div>
 	<div class="mx-auto col-10 col-md-6 text-center">
 		Bienvenue
@@ -18,12 +19,53 @@
 		dans votre compte. C'est dans cet espace que vous allez pouvoir gérer toutes vos vos informations personnelles.
 		<hr>
 		<ul class="list-group list-group-flush">
-			<li class="list-group-item"><a href="{{path('account_password')}}">Modifier son mot de passe</a ></li>
-			<li class="list-group-item"><a href="{{path('admin')}}">Accès au catalogue</a></li>
+			<li class="list-group-item">
+				<a class="btn btn-outline-warning" href="{{path('account_password')}}">Modifier son mot de passe</a>
+			</li>
+			<li class="list-group-item">
+				<a class="btn btn-outline warning" href="{{path('admin')}}">Accès au catalogue</a>
+			</li>
 		</ul>
 	</div>
+	<br>
+	<div class="d-flex justify-content-center">
+		<h2 class="h2 fst-italic px-2 text-muted">Mes emprunts</h2>
+		<i class="fas fa-book-reader px-2" style="font-size:40px;color:#51aad6"></i>
+	</div>
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-10 col-lg-8">
+				<section class="shadow rounded" id="MesEmprunts">
+					<div class="table-responsive">
+						<table class="table table-striped text-center justify-content-center mx-auto my-3" data-toggle="table">
+							<thead>
+								<tr class="px-2 mx-2">
+									<th scope="col" class="table-border text-warning text-center py-3 me-5  pe-5 fst-italic">Titre</th>
+									<th scope="col" class="table-border text-warning text-center  p-3 fst-italic">Catégorie</th>
+									<th scope="col" class="table-border text-warning text-center  p-3 fst-italic">Date d'emprunt</th>
+									<th scope="col" class="table-border text-warning text-center  p-3 fst-italic">A rendre au plus tard le</th>
+								</tr>
+							</thead>
+							{% for index, book in booksHolded %}
+								<tbody class="justify-content-around">
+									<tr>
+										<th scope="row" class="p-3 font-weight-bold">{{book.title}}</th>
+										<td class="table-light text-center text-muted darker">{{book.category}}</td>
+										<td class="table-light text-center text-muted darker">{{book.loanDate|date("d/m/Y")}}</td>
+										<td class="table-light text-center text-muted darker">{{book.returnloanDate|date("d/m/Y")}}</td>
 
-	{# {{dump(app.user.firstname.)}} #}
-	<hr>
-
-{% endblock %}
+										{# <td class="table-light">{{book.loan_date|date()}}</td> #}
+									{# <td class="table-light">{{book.getloan_date|date('m-d-Y')}}</td> #}
+										{# {{ game.gameDate|date('Y-m-d H:i:s') }} #}
+									</tr>
+								</tbody>
+							{% endfor %}
+							</table>
+						
+						</div>
+					</section>
+				</div>
+			</div>
+			{# {{dump(app.user.firstname.)}} #}
+			<hr>
+		{% endblock %}

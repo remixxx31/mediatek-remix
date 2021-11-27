@@ -21,6 +21,7 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
+       
         // return parent::index();
             // redirect to some CRUD controller
             // $routeBuilder = $this->get(AdminUrlGenerator::class);
@@ -28,9 +29,9 @@ class DashboardController extends AbstractDashboardController
             $routeBuilder = $this->get(AdminUrlGenerator::class);
             return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
         // you can also redirect to different pages depending on the current user
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
+        if ('ROLE_USER' === $this->getUser()->getRoles()) {
+            return $this->redirect($routeBuilder->setController(BookCrudController::class)->generateUrl());
+        }
 
     }
 
@@ -43,7 +44,7 @@ class DashboardController extends AbstractDashboardController
     {
         // yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linktoRoute('Mon compte', 'fas fa-reply', 'account');
-        yield MenuItem::linkToRoute('Mes emprunts', 'fas fa-eye', 'admin');
+        yield MenuItem::linkToRoute('Abonnés', 'fas fa-eye', 'admin')->setPermission('ROLE_AUTHOR');
         // yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class)->
         // setPermission('ROLE_AUTHOR');
 

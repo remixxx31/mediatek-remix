@@ -1,4 +1,5 @@
-a<!DOCTYPE html>
+a
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -10,7 +11,7 @@ a<!DOCTYPE html>
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																		           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																								           and uncomment the following Encore helpers to start using Symfony UX #}
 
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
@@ -20,66 +21,65 @@ a<!DOCTYPE html>
 			<script src="https://kit.fontawesome.com/6a69c5423c.js" crossorigin="anonymous"></script>
 			{{ encore_entry_link_tags('app') }}
 		{% endblock stylesheets %}
-	
+
 	</head>
 	<body>
 		{% block nav%}
-			<nav class="navbar navbar-expand-md navbar-dark h-20 pt-2 d-flex align-item-center container-fluid  fixed-top bg-light mb-5 ">
-				<div class="px-3 w-15">
-					<a class="navbar-brand float-left" href="#">Mediatek</a>
-				</div>
-				{# Menu burger #}
-				<button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="container w-85">
+			<div class="row">
+				<nav
+					class="navbar navbar-expand-md navbar-dark h-20 pt-2 d-flex align-item-center container-fluid  fixed-top bg-light mb-5 ">
+					{# Grid 2 colonnes brand #}
+					<div class="col-2 text-bold">
+						<div class="px-3 w-15">
+							<a class="navbar-brand text-warning" href="#">Mediatek</a>
+						</div>
+					</div>
+					{# Menu burger #}
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
 					<div class="collapse navbar-collapse px-2" id="navbarCollapse">
-						<ul class="navbar-nav mr-auto">
+						<ul class="navbar-nav mr-auto col-12">
 
-							<div class="w-20">
-								<li class="nav-item active">
-									<a class="nav-link text-secondary" href="#">
-										<i class="fas fa-book"></i>
-									Mes emprunts<span class="sr-only"></span>
-								</li>
-							</a>
-						</li>
+							<li class="nav-item active col-sm-4">
+								<a class="nav-link text-secondary" href="#MesEmprunts">Mes emprunts
+									<i class="fas fa-book" style="color:#51aad6"></i>
+									<span class="sr-only"></span>
+								</a>
+							</li>
+							<li class="nav-item active col-sm-4">
+								<a class="nav-link text-secondary" href="{{path('admin')}}">Le catalogue
+								<i class="far fa-eye" style="color:#51aad6"></i>
+									<span class="sr-only"></span>
+								</a>
+							</li>
+						</div>
+							<div class="col-sm-4 flex-nowrap text-end">
+							<div class="d-flex justify-content-end">
+									{% if app.user %}
+										<a href="{{path('account')}}">Mon compte
+											<small>({{app.user.firstname}})</small>
+										</a>
+										|
+										<a href="{{path('app_logout')}}">Déconnexion</a>
+									{% else %}
+
+										<a href="{{path('app_login')}}">Connexion</a>
+										|
+										<a href="{{path('register')}}">Inscription</a>
+									{% endif %}
+							</div>
+							</div>
+						</ul>
 					</div>
 
-					<div class="w-20">
-						<li class="nav-item active">
-							<a class="nav-link text-secondary" href="{{path('admin')}}">Le catalogue
-								<span class="sr-only"></span>
-							</a>
-						</li>
-					</div>
-
-						{% if app.user %}
-					<div class="flex-end text-end">
-							<a href="{{path('account')}}">Mon compte
-								<small>({{app.user.firstname}})</small>
-							</a>
-							|
-							<a href="{{path('app_logout')}}">Déconnexion</a>
-						{% else %}
-
-							<a href="{{path('app_login')}}">Connexion</a>
-							|
-							<a href="{{path('register')}}">Inscription</a>
-						{% endif %}
-					</div>
-
-				</ul>
+				</div>
 				{# FIn menu burger #}
 			</nav>
-		{% endblock %}
-		{% block brand %}{% endblock %}
-		{% block body %}{% endblock %}
-		
-		{% block javascripts %}
-		{{ encore_entry_script_tags('app') }}
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="{{asset('assets/JS/bootstrap.bundle.js')}}"></script>
-		{% endblock %}
-	</body>
-</html>
+		</body>
+	</html>
+</div>{% endblock %}{% block brand %}{% endblock %}{% block body %}{% endblock %}{% block javascripts %}
+{{ encore_entry_script_tags('app') }}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{asset('assets/JS/bootstrap.bundle.js')}}"></script>{% endblock %}</body></html>
