@@ -11,7 +11,7 @@ a
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																																								           and uncomment the following Encore helpers to start using Symfony UX #}
+																																																										           and uncomment the following Encore helpers to start using Symfony UX #}
 
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
@@ -50,36 +50,32 @@ a
 							</li>
 							<li class="nav-item active col-sm-4">
 								<a class="nav-link text-secondary" href="{{path('admin')}}">Le catalogue
-								<i class="far fa-eye" style="color:#51aad6"></i>
+									<i class="far fa-eye" style="color:#51aad6"></i>
 									<span class="sr-only"></span>
 								</a>
 							</li>
-						</div>
-							<div class="col-sm-4 flex-nowrap text-end">
+						<div class="col-sm-4 flex-nowrap text-end">
 							<div class="d-flex justify-content-end">
-									{% if app.user %}
-										<a href="{{path('account')}}">Mon compte
-											<small>({{app.user.firstname}})</small>
-										</a>
-										|
-										<a href="{{path('app_logout')}}">Déconnexion</a>
-									{% else %}
+								{% if app.user %}
+									<a href="{{path('account')}}">Mon compte
+										<small>({{app.user.firstname}})</small>
+									</a>
+									|
+									<a href="{{path('app_logout')}}">Déconnexion</a>
+								{% else %}
 
-										<a href="{{path('app_login')}}">Connexion</a>
-										|
-										<a href="{{path('register')}}">Inscription</a>
-									{% endif %}
+									<a href="{{path('app_login')}}">Connexion</a>
+									|
+									<a href="{{path('register')}}">Inscription</a>
+								{% endif %}
 							</div>
-							</div>
-						</ul>
-					</div>
-
+						</div>
+					</ul>
+						</div>
 				</div>
-				{# FIn menu burger #}
-			</nav>
+
+			</div>
+			{# FIn menu burger #}
 		</body>
 	</html>
-</div>{% endblock %}{% block brand %}{% endblock %}{% block body %}{% endblock %}{% block javascripts %}
-{{ encore_entry_script_tags('app') }}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{asset('assets/JS/bootstrap.bundle.js')}}"></script>{% endblock %}</body></html>
+</nav></body></html></div>{% endblock %}{% block brand %}{% endblock %}{% block body %}{% endblock %}{% block javascripts %}{{ encore_entry_script_tags('app') }}<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><script src="{{asset('assets/JS/bootstrap.bundle.js')}}"></script>{% endblock %}</body></html>
