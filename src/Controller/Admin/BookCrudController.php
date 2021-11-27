@@ -31,8 +31,7 @@ class BookCrudController extends AbstractCrudController
         return $actions
             // ...
             ->setPermission(Action::NEW, 'ROLE_AUTHOR')
-            ->setPermission(Action::DELETE, 'ROLE_ADMIN')
-        ;
+            ->setPermission(Action::DELETE, 'ROLE_ADMIN');
     }
     public function configureCrud(Crud $crud): Crud
     {
@@ -53,7 +52,7 @@ class BookCrudController extends AbstractCrudController
     {
         // dd($this->isGranted('ROLE_USER'));
         $hasNotRoleAuthor = !$this->isGranted('ROLE_AUTHOR');
-        
+
         // $books = $this->getDoctrine()->getRepository(Book::class)->findAll();
 
         return [
@@ -63,8 +62,8 @@ class BookCrudController extends AbstractCrudController
             AssociationField::new('authorbook', 'Auteur')->setDisabled($hasNotRoleAuthor)->setColumns(7),
             AssociationField::new('category', 'Catégorie')->setDisabled($hasNotRoleAuthor)->setColumns(5),
             ImageField::new('cover', 'image')->setUploadDir("public/assets/images/cover_img")
-            ->setBasePath("/assets/images/cover_img")
-            ->setRequired(false)->setDisabled($hasNotRoleAuthor),
+                ->setBasePath("/assets/images/cover_img")
+                ->setRequired(false)->setDisabled($hasNotRoleAuthor),
             TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
             FormField::addPanel('Gestion du prêt'),
             BooleanField::new('available', 'Réserver')->setColumns(2),

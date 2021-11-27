@@ -33,8 +33,11 @@ class KindCrudController extends AbstractCrudController
             //   %entity_id%, %entity_short_id%
             //   %entity_label_singular%, %entity_label_plural%
             ->setPageTitle('edit', 'Genre')
+            ->setPageTitle('index', 'Genres')
+            ->setPageTitle('new', 'Genre')
             // the help message displayed to end users (it can contain HTML tags)
-            ->setHelp('edit', 'Vous pouvez rajouter ou supprimer des types de livres dans cette partie');
+            ->setHelp('edit', 'Vous pouvez modifier des genres de livres dans cette partie')
+            ->setHelp('new', 'Vous pouvez ajouter des genres de livres dans cette partie');
     }
     
     public function configureFields(string $pageName): iterable
