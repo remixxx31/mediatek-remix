@@ -42,9 +42,11 @@ class BookCrudController extends AbstractCrudController
             //   %entity_id%, %entity_short_id%
             //   %entity_label_singular%, %entity_label_plural%
             ->setPageTitle('index', 'Livres')
+            ->setPageTitle('detail', 'Livres!')
             ->setPageTitle('edit', 'Livre')
             ->setPageTitle('new', 'Ajouter un Livre')
             // the help message displayed to end users (it can contain HTML tags)
+            ->setHelp('index', 'Vous pourvez réservez un livre en allant dans éditer sur la droite, pour emprunter il faudra vous rendre sur place')
             ->setHelp('edit', 'Vous pouvez modifier les informations sur le livre')
             ->setHelp('new', 'Vous pouvez ajouter un livre dans la catalogue de la médiathèque');
     }
@@ -66,7 +68,7 @@ class BookCrudController extends AbstractCrudController
                 ->setRequired(false)->setDisabled($hasNotRoleAuthor),
             TextEditorField::new('description')->setDisabled($hasNotRoleAuthor),
             FormField::addPanel('Gestion du prêt'),
-            BooleanField::new('available', 'Réserver')->setColumns(2),
+            BooleanField::new('available', 'Réserver')->setColumns(2)->hideOnIndex(),
             TextField::new('reservedFor', 'réservé pour')->setColumns(4)->setDisabled(),
             FormField::addRow(),
             DateField::new('loan_date', 'emprunté depuis le')->setDisabled($hasNotRoleAuthor)->setColumns(4),

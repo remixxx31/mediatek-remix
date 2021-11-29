@@ -47,7 +47,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastname', 'Nom')->setDisabled(),
             DateField::new('birthday', 'Date de naissance')->hideOnIndex()->setDisabled(),
             ArrayField::new('roles')->hideOnIndex()->setPermission('ROLE_ADMIN'),
-            TextareaField::new('adress')->setPermission('ROLE_AUTHOR'),
+            TextareaField::new('adress')->setPermission('ROLE_AUTHOR')->hideOnIndex(),
         ];
     }
 }

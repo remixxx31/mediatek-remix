@@ -1,10 +1,11 @@
-.custom-nav, .custom-nav a{
+/* .custom-nav, .custom-nav a{
  color: rgb(242, 242, 242);
+ */
 
+nav a:hover{
+  color:#d47500!important;
+  font-weight:bolder;
 
-a:hover{
-  background:rgb(114, 123, 132);
-  color:white;
 }
 
 .custom-nav{

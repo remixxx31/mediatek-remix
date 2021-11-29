@@ -40,7 +40,7 @@
 						<table class="table table-striped text-center justify-content-center mx-auto my-3" data-toggle="table">
 							<thead>
 								<tr class="px-2 mx-2">
-									<th scope="col" class="table-border text-warning text-center py-3 me-5  pe-5 fst-italic">Titre</th>
+									<th scope="col" class="table-border text-warning text-center p-3 me-5  pe-5 fst-italic" data-sortable="true">Titre</th>
 									<th scope="col" class="table-border text-warning text-center  p-3 fst-italic">Catégorie</th>
 									<th scope="col" class="table-border text-warning text-center  p-3 fst-italic">Date d'emprunt</th>
 									<th scope="col" class="table-border text-warning text-center  p-3 fst-italic">A rendre au plus tard le</th>
@@ -49,7 +49,7 @@
 							{% for index, book in booksHolded %}
 								<tbody class="justify-content-around">
 									<tr>
-										<th scope="row" class="p-3 font-weight-bold">{{book.title}}</th>
+										<td scope="row" class="p-3 font-weight-bold">{{book.title}}</td>
 										<td class="table-light text-center text-muted darker">{{book.category}}</td>
 										<td class="table-light text-center text-muted darker">{{book.loanDate|date("d/m/Y")}}</td>
 										<td class="table-light text-center text-muted darker">{{book.returnloanDate|date("d/m/Y")}}</td>
